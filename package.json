@@ -25,17 +25,13 @@
     "prepare": "husky install",
     "lint": "eslint --ext .tsx,.ts .",
     "lint-fix": "eslint --fix --ext .tsx,.ts .",
-    "prettier": "prettier . --ignore-path .gitignore",
-    "format:check": "yarn run prettier --check",
-    "format:fix": "yarn run prettier --write",
     "type:check": "tsc"
   },
   "lint-staged": {
     "*.{tsx,ts}": [
       "yarn run lint-fix",
       "yarn run lint",
-      "format:fix",
-      "format:check"
+      "prettier --write"
     ]
   },
   "husky": {
