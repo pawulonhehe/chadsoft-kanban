@@ -1,5 +1,3 @@
-import './App.css'
-
-const App = () => <div>SIUUUUUUUUUUUUU</div>
+const App = () => <div>siuuuuu</div>
 
 export default App

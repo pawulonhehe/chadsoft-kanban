@@ -22,6 +22,20 @@ module.exports = {
   ],
 
   rules: {
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    'react/react-in-jsx-scope': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -30,16 +44,11 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'no-use-before-define': ['error'],
     'react/jsx-props-no-spreading': ['error'],
     'arrow-body-style': 'off',
     'react/function-component-definition': 'off',
-    '@typescript-eslint/no-use-before-define': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-explicit-any': ['error'],
     '@typescript-eslint/no-unused-vars': ['error'],
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 }
