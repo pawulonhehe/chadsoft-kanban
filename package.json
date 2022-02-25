@@ -25,9 +25,14 @@
     "prepare": "husky install",
     "lint": "eslint --ext .tsx,.ts .",
     "lint-fix": "eslint --fix --ext .tsx,.ts .",
-    "type:check": "tsc"
+    "type:check": "tsc",
+    "stylelint": "stylelint **/*.scss"
   },
   "lint-staged": {
+    "*.scss": [
+      "stylelint --fix",
+      "stylelint"
+    ],
     "*.{tsx,ts}": [
       "yarn run lint-fix",
       "yarn run lint",
@@ -70,6 +75,7 @@
     "eslint-plugin-security": "^1.4.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.3.4",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "stylelint": "^14.5.3"
   }
 }
