@@ -12,12 +12,20 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'security'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'security',
+    'jest-dom',
+    'testing-library',
+  ],
   extends: [
     'plugin:react/recommended',
     'airbnb',
     'plugin:security/recommended',
     'plugin:import/typescript',
+    'plugin:jest-dom/recommended',
+    'plugin:testing-library/react',
     'prettier',
   ],
 
