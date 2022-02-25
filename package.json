@@ -28,7 +28,9 @@
     "lint": "eslint --ext .tsx,.ts .",
     "lint-fix": "eslint --fix --ext .tsx,.ts .",
     "type:check": "tsc",
-    "stylelint": "stylelint **/*.scss"
+    "stylelint": "stylelint **/*.scss",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "lint-staged": {
     "*.scss": [
@@ -59,6 +61,16 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/node-logger": "^6.4.19",
+    "@storybook/preset-create-react-app": "^4.0.1",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "cypress": "^9.5.0",
@@ -71,12 +83,26 @@
     "eslint-plugin-react": "^7.29.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-storybook": "^0.5.7",
     "eslint-plugin-testing-library": "^5.0.5",
     "husky": "^7.0.0",
     "lint-staged": "^12.3.4",
     "prettier": "^2.5.1",
     "sass": "^1.49.9",
     "stylelint": "^14.5.3",
-    "stylelint-config-sass-guidelines": "^9.0.1"
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "webpack": "^5.69.1"
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   }
 }
