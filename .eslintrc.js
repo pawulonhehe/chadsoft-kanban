@@ -20,7 +20,13 @@ module.exports = {
     'plugin:import/typescript',
     'prettier',
   ],
-
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
   rules: {
     'import/extensions': [
       'error',
@@ -30,16 +36,17 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'no-use-before-define': ['error'],
-    'react/jsx-props-no-spreading': ['error'],
-    'arrow-body-style': 'off',
-    'react/function-component-definition': 'off',
-    '@typescript-eslint/no-use-before-define': 'error',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-explicit-any': ['error'],
-    '@typescript-eslint/no-unused-vars': ['error'],
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'no-use-before-define': 1,
+    'react/jsx-props-no-spreading': 1,
+    'arrow-body-style': 0,
+    'react/function-component-definition': 0,
+    '@typescript-eslint/no-use-before-define': 1,
+    'no-unused-vars': 1,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-unused-vars': 1,
+    'react/react-in-jsx-scope': 0,
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'import/no-extraneous-dependencies': [1, { devDependencies: true }],
+    'import/prefer-default-export': 0,
   },
-}
+};
