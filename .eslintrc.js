@@ -48,5 +48,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     'import/no-extraneous-dependencies': [1, { devDependencies: true }],
     'import/prefer-default-export': 0,
+    'dot-notation': 0,
   },
 };
