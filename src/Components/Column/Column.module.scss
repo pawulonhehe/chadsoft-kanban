@@ -1,9 +1,10 @@
-.task {
+.column {
   border-radius: 0.5rem;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
   display: column;
-  height: 12rem;
-  width: 12rem;
+  display: column;
+  min-height: 36rem;
+  width: 14rem;
 
   &__header {
     align-items: center;
@@ -13,20 +14,12 @@
     font-weight: 600;
     height: 2rem;
     justify-content: center;
-    position: relative;
-    position: relative;
-    text-align: center;
-    text-align: center;
   }
 
   &__content {
+    background-color: #95a5a6;
     color: #000;
     margin: 0.5rem;
     overflow-wrap: break-word;
-  }
-
-  &__icons {
-    position: absolute;
-    right: 0;
   }
 }
