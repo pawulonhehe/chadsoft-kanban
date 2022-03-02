@@ -1,0 +1,30 @@
+.task {
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  display: column;
+  height: 12rem;
+  width: 12rem;
+
+  &__header {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    font-family: 'Gotham';
+    font-weight: 600;
+    height: 2rem;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+  }
+
+  &__content {
+    color: #000;
+    margin: 0.5rem;
+    overflow-wrap: break-word;
+  }
+
+  &__icons {
+    position: absolute;
+    right: 0;
+  }
+}
