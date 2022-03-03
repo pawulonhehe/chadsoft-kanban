@@ -1,7 +1,12 @@
+import Task from '../Task/Task';
 import classes from './Column.module.scss';
 
-type ColumnProps = { title: string; description: string; color: string };
-const Column = ({ title, description, color }: ColumnProps) => (
+type ColumnProps = {
+  title: string;
+  color: string;
+  tasks: { color: string; description: string; title: string }[];
+};
+const Column = ({ title, color, tasks }: ColumnProps) => (
   <div className={classes.column}>
     <div
       className={classes['column__header']}
@@ -9,7 +14,21 @@ const Column = ({ title, description, color }: ColumnProps) => (
     >
       {title}
     </div>
-    <div className={classes['column__content']}>{description}</div>
+    <div className={classes['column__content']}>
+      {tasks.map(
+        ({
+          color: taskColor,
+          description: taskDescription,
+          title: taskTitle,
+        }) => (
+          <Task
+            color={taskColor}
+            title={taskTitle}
+            description={taskDescription}
+          />
+        )
+      )}
+    </div>
   </div>
 );
 
