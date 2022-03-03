@@ -1,18 +1,32 @@
-import Task from './Components/Task/Task';
+// import Task from './Components/Task/Task';
+import Column from './Components/Column/Column';
 
 export const App = () => {
+  const tasks = [
+    {
+      title: 'cos',
+      description: 'xd',
+      color: '#9b59b6',
+    },
+    {
+      title: 'cos',
+      description: 'xd',
+      color: '#9b59b6',
+    },
+    {
+      title: 'cos',
+      description: 'xd',
+      color: '#9b59b6',
+    },
+    {
+      title: 'cos',
+      description: 'xd',
+      color: '#9b59b6',
+    },
+  ];
   return (
-    <div>
-      <Task
-        color="#3498db"
-        description="ale super task ja cie"
-        title="NowyTask"
-      />
-      <Task
-        color="#9b59b6"
-        description="w porzondku w porzondku"
-        title="NowyTask"
-      />
+    <div style={{ height: '100%' }}>
+      <Column color="#9b59b6" title="TO DO" tasks={tasks} />
     </div>
   );
 };
