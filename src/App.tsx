@@ -1,32 +1,11 @@
-// import Task from './Components/Task/Task';
-import Column from './Components/Column/Column';
+import Kanban from 'Pages/Kanban/Kanban';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import classes from './App.module.scss';
 
-export const App = () => {
-  const tasks = [
-    {
-      title: 'cos',
-      description: 'xd',
-      color: '#9b59b6',
-    },
-    {
-      title: 'cos',
-      description: 'xd',
-      color: '#9b59b6',
-    },
-    {
-      title: 'cos',
-      description: 'xd',
-      color: '#9b59b6',
-    },
-    {
-      title: 'cos',
-      description: 'xd',
-      color: '#9b59b6',
-    },
-  ];
-  return (
-    <div style={{ height: '100%' }}>
-      <Column color="#9b59b6" title="TO DO" tasks={tasks} />
-    </div>
-  );
-};
+export const App = () => (
+  <div className={classes.app}>
+    <Kanban />
+    <ToastContainer />
+  </div>
+);

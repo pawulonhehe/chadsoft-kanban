@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import { App } from './App';
+import { Modal } from 'Components';
 
 test('renders learn react link', () => {
-  render(<App />);
+  render(<Modal onClose={jest.fn()}>srktt </Modal>);
 });

@@ -1,8 +1,9 @@
 .column {
   border-radius: 0.5rem;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-  display: column;
-  display: column;
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   width: 14.5rem;
 
@@ -10,10 +11,16 @@
     align-items: center;
     color: #fff;
     display: flex;
-    font-family: 'Montserrat';
     font-weight: 1000;
     height: 2rem;
     justify-content: center;
+    position: relative;
+    text-align: center;
+  }
+
+  &__icons {
+    position: absolute;
+    right: 0;
   }
 
   &__content {
