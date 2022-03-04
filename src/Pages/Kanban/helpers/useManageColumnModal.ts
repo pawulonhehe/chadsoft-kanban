@@ -97,12 +97,15 @@ export const useManageColumnModal = ({
           endpoint: 'columns.json',
         })
       : mutate({
-          method: 'PATCH',
+          method: 'PUT',
           payload: {
             color,
             name,
             numberOfTasks: +numberOfTasks,
-            tasks: [],
+            tasks: modalInfo.tasks.map(({ name: taskName, description }) => ({
+              name: taskName,
+              description,
+            })),
           },
           endpoint: `columns/${modalInfo.id}.json`,
         });

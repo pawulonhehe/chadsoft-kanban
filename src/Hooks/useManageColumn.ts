@@ -11,7 +11,7 @@ type payloadColumnType = {
   color: string;
   name: string;
   numberOfTasks: number;
-  tasks: TaskType[];
+  tasks: TaskType[] | { name: string; description: string }[];
 };
 
 type useManageTaskProps = {

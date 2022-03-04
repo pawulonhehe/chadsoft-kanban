@@ -73,7 +73,7 @@ export const useManageTaskModal = ({
           endpoint: `columns/${modalInfo.columnId}/tasks.json`,
         })
       : mutate({
-          method: 'PATCH',
+          method: 'PUT',
           payload: {
             name,
             description,

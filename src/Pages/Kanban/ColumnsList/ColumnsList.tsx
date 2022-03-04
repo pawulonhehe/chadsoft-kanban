@@ -44,7 +44,11 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
           onDelete={onDelete}
           onEdit={onEdit}
         >
-          <button type="button" onClick={() => showModalHandler(id)}>
+          <button
+            disabled={tasks.length >= numberOfTasks}
+            type="button"
+            onClick={() => showModalHandler(id)}
+          >
             open
           </button>
           <TasksList

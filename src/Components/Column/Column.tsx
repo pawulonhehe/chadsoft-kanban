@@ -55,7 +55,11 @@ export const Column = ({
         style={{ backgroundColor: color }}
       >
         <div className={classes['column__info']}>
-          <div> {title}</div> <div>0/{numberOfTasks}</div>
+          <div style={{ cursor: 'pointer' }}>{title}</div>
+
+          <div>
+            {tasks.length}/{numberOfTasks}
+          </div>
         </div>
         <div className={classes['column__icons']}>
           <EditIcon

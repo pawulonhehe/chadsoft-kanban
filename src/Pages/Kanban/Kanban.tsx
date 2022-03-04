@@ -1,6 +1,6 @@
 import { ColumnsList } from 'Pages/Kanban/ColumnsList/ColumnsList';
-import { useKanban } from './helpers/useKanban';
-import { ManageColumnModal } from './ManageColumnModal/ManageColumnModal';
+import { useKanban } from 'Pages/Kanban/helpers/useKanban';
+import { ManageColumnModal } from 'Pages/Kanban/ManageColumnModal/ManageColumnModal';
 import classes from './Kanban.module.scss';
 
 const Kanban = () => {
