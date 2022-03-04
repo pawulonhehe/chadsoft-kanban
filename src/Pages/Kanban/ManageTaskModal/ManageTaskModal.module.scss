@@ -1,0 +1,30 @@
+/* stylelint-disable */
+.manage-task-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  &__exit-button {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    background-image: linear-gradient(
+      to left,
+      violet,
+      indigo,
+      blue,
+      green,
+      yellow,
+      orange,
+      red
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
