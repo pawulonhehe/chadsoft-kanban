@@ -53,7 +53,8 @@ export const useManageTaskModal = ({
     setError(!isValuesValid);
     if (modalInfo.title === 'edit') {
       const haveValuesChange =
-        name !== modalInfo.name || description !== modalInfo.description;
+        name.trim() !== modalInfo.name ||
+        description.trim() !== modalInfo.description;
 
       setError(!isValuesValid || !haveValuesChange);
     }
@@ -67,16 +68,16 @@ export const useManageTaskModal = ({
       ? mutate({
           method: 'POST',
           payload: {
-            name,
-            description,
+            name: name.trim(),
+            description: description.trim(),
           },
           endpoint: `columns/${modalInfo.columnId}/tasks.json`,
         })
       : mutate({
           method: 'PUT',
           payload: {
-            name,
-            description,
+            name: name.trim(),
+            description: description.trim(),
           },
           endpoint: `columns/${modalInfo.columnId}/tasks/${modalInfo.taskId}.json`,
         });

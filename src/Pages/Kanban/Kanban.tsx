@@ -16,7 +16,7 @@ const Kanban = () => {
   return (
     <div className={classes.kanban}>
       <button onClick={showModalHandler} type="button">
-        open modal
+        Add Column
       </button>
       <ColumnsList
         columns={data}

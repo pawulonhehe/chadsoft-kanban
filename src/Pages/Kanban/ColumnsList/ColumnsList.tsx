@@ -32,7 +32,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
   } = useColumnList();
 
   return (
-    <div>
+    <>
       {columns.map(({ name, color, id, numberOfTasks, tasks }) => (
         <Column
           tasks={tasks}
@@ -49,7 +49,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
             type="button"
             onClick={() => showModalHandler(id)}
           >
-            open
+            Add Task
           </button>
           <TasksList
             columnId={id}
@@ -66,6 +66,6 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
           onClose={hideModalHandler}
         />
       )}
-    </div>
+    </>
   );
 };

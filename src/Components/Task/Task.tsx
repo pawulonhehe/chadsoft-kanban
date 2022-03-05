@@ -37,7 +37,7 @@ export const Task = ({
     onEdit({ columnId, name: title, description, taskId: id });
 
   return (
-    <div className={classes.task}>
+    <article className={classes.task} data-testid={`${title}-task`}>
       <div
         className={classes['task__header']}
         style={{ backgroundColor: color }}
@@ -48,15 +48,17 @@ export const Task = ({
             onClick={editTaskHandler}
             style={{ cursor: 'pointer' }}
             fontSize="small"
+            data-testid={`task-${title}-edit-icon`}
           />
           <DeleteIcon
             style={{ cursor: 'pointer' }}
             onClick={deleteTaskHandler}
             fontSize="small"
+            data-testid={`task-${title}-delete-icon`}
           />
         </div>
       </div>
       <div className={classes['task__content']}>{description}</div>
-    </div>
+    </article>
   );
 };

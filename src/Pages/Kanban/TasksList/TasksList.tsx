@@ -26,7 +26,7 @@ export const TasksList = ({
   onDelete,
   onEdit,
 }: TaskListProps) => (
-  <div>
+  <>
     {tasks?.map(({ id, name, description }) => (
       <Task
         onEdit={onEdit}
@@ -39,5 +39,5 @@ export const TasksList = ({
         color={color}
       />
     ))}
-  </div>
+  </>
 );

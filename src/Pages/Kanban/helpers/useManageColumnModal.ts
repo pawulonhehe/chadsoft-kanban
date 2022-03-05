@@ -70,7 +70,7 @@ export const useManageColumnModal = ({
     }
     if (modalInfo.title === 'edit') {
       const haveValueChanged =
-        name !== modalInfo.name ||
+        name.trim() !== modalInfo.name ||
         +numberOfTasks !== modalInfo.numberOfTasks ||
         color !== modalInfo.color;
 
@@ -90,7 +90,7 @@ export const useManageColumnModal = ({
           method: 'POST',
           payload: {
             color,
-            name,
+            name: name.trim(),
             numberOfTasks: +numberOfTasks,
             tasks: [],
           },
@@ -100,7 +100,7 @@ export const useManageColumnModal = ({
           method: 'PUT',
           payload: {
             color,
-            name,
+            name: name.trim(),
             numberOfTasks: +numberOfTasks,
             tasks: modalInfo.tasks.map(({ name: taskName, description }) => ({
               name: taskName,
