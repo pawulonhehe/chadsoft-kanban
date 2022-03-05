@@ -27,10 +27,12 @@ export const ManageTaskModal = ({
   return (
     <Modal onClose={onClose}>
       <form
+        data-testid="manage-task-modal"
         onSubmit={manageTaskHandler}
         className={classes['manage-task-modal']}
       >
         <CloseIcon
+          data-testid="close-manage-task-modal-icon"
           onClick={onClose}
           color="warning"
           className={classes['manage-task-modal__exit-button']}
@@ -42,7 +44,7 @@ export const ManageTaskModal = ({
           value={name}
           onChange={changeNameHandler}
           margin="normal"
-          label="Task Name"
+          label="Task name"
           color="secondary"
           focused
         />

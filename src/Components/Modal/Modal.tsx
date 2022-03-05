@@ -12,22 +12,24 @@ const ModalOverlay = ({ children }: { children: ReactNode }) => (
   </div>
 );
 
-const portalElement = document.getElementById('overlays');
-
 export const Modal = ({
   onClose,
   children,
 }: {
   onClose: () => void;
   children: ReactNode;
-}) => (
-  <>
-    {portalElement &&
-      ReactDOM.createPortal(<Backdrop onClose={onClose} />, portalElement)}
-    {portalElement &&
-      ReactDOM.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
-        portalElement
-      )}
-  </>
-);
+}) => {
+  const portalElement = document.getElementById('overlays');
+
+  return (
+    <>
+      {portalElement &&
+        ReactDOM.createPortal(<Backdrop onClose={onClose} />, portalElement)}
+      {portalElement &&
+        ReactDOM.createPortal(
+          <ModalOverlay>{children}</ModalOverlay>,
+          portalElement
+        )}
+    </>
+  );
+};

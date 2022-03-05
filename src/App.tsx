@@ -1,4 +1,4 @@
-import Header from 'Components/Header/Header';
+import { Header } from 'Components';
 import Kanban from 'Pages/Kanban/Kanban';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

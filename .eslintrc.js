@@ -55,5 +55,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'react/require-default-props': 0,
     'no-unused-expressions': 0,
+    'react/jsx-no-useless-fragment': [1, { allowExpressions: true }],
   },
 };

@@ -49,7 +49,7 @@ export const Column = ({
     });
 
   return (
-    <div className={classes.column}>
+    <section className={classes.column} data-testid={`${title}-column`}>
       <div
         className={classes['column__header']}
         style={{ backgroundColor: color }}
@@ -66,15 +66,17 @@ export const Column = ({
             style={{ cursor: 'pointer' }}
             onClick={editColumnHandler}
             fontSize="small"
+            data-testid={`column-${title}-edit-icon`}
           />
           <DeleteIcon
             style={{ cursor: 'pointer' }}
             onClick={deleteColumnHandler}
             fontSize="small"
+            data-testid={`column-${title}-delete-icon`}
           />
         </div>
       </div>
       <div className={classes['column__content']}>{children}</div>
-    </div>
+    </section>
   );
 };

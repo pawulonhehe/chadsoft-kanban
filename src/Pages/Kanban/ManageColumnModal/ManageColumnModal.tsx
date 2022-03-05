@@ -30,12 +30,14 @@ export const ManageColumnModal = ({
   return (
     <Modal onClose={onClose}>
       <form
+        data-testid="manage-column-modal"
         onSubmit={manageColumnHandler}
         className={classes['manage-columns-modal']}
       >
         <CloseIcon
           onClick={onClose}
           color="warning"
+          data-testid="close-manage-column-modal-icon"
           className={classes['manage-columns-modal__exit-button']}
         />
         <h1 className={classes['manage-columns-modal__title']}>
@@ -43,7 +45,7 @@ export const ManageColumnModal = ({
         </h1>
         <TextField
           margin="normal"
-          label="columns Name"
+          label="Column name"
           color="secondary"
           focused
           value={name}
