@@ -39,7 +39,6 @@ module.exports = {
       },
     ],
     'no-use-before-define': 1,
-    'react/jsx-props-no-spreading': 1,
     'arrow-body-style': 0,
     'react/function-component-definition': 0,
     '@typescript-eslint/no-use-before-define': 1,
@@ -56,5 +55,6 @@ module.exports = {
     'react/require-default-props': 0,
     'no-unused-expressions': 0,
     'react/jsx-no-useless-fragment': [1, { allowExpressions: true }],
+    'react/jsx-props-no-spreading': 0,
   },
 };

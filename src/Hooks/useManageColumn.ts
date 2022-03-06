@@ -28,7 +28,9 @@ export const useManageColumn = (onSuccess: () => void) => {
       data: payload ? JSON.stringify(payload) : null,
     });
 
-  const { mutate, isLoading } = useMutation(manageColumn, { onSuccess });
+  const { mutate, isLoading, mutateAsync } = useMutation(manageColumn, {
+    onSuccess,
+  });
 
-  return { mutate, isLoading };
+  return { mutateAsync, mutate, isLoading };
 };

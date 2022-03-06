@@ -40,7 +40,10 @@ export const useManageColumnModal = ({
 
   const onSuccess = () => {
     queryClient.invalidateQueries('columns');
-    useCustomToast(`Column ${name} successfully ${modalInfo.title}ed`);
+    useCustomToast({
+      text: `Column successfully ${modalInfo.title}ed`,
+      type: 'success',
+    });
     onClose();
   };
 
