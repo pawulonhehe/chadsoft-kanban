@@ -15,14 +15,18 @@ const Kanban = () => {
 
   return (
     <div className={classes.kanban}>
-      <button onClick={showModalHandler} type="button">
-        Add Column
-      </button>
       <ColumnsList
         columns={data}
         onDelete={deleteColumnHandler}
         onEdit={editColumnHandler}
       />
+      <button
+        className={classes['kanban__add-column-button']}
+        onClick={showModalHandler}
+        type="button"
+      >
+        Add Column
+      </button>
       {manageColumnModalInfo.isOpen && (
         <ManageColumnModal
           modalInfo={manageColumnModalInfo}

@@ -9,9 +9,12 @@
 
   &__header {
     align-items: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     color: #fff;
     display: flex;
-    font-weight: 1000;
+    font-size: 13px;
+    font-weight: 600;
     height: 2rem;
     justify-content: center;
     position: relative;

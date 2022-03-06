@@ -28,27 +28,30 @@ export const TasksList = ({
   onEdit,
 }: TaskListProps) => (
   <>
-    {tasks?.map(({ id, name, description }, index) => (
-      <Draggable key={id} draggableId={`${columnId}-${id}`} index={index}>
-        {(draggableProvided) => (
-          <div
-            {...draggableProvided.dragHandleProps}
-            {...draggableProvided.draggableProps}
-            ref={draggableProvided.innerRef}
-          >
-            <Task
-              onEdit={onEdit}
-              columnId={columnId}
-              onDelete={onDelete}
-              title={name}
-              description={description}
-              key={id}
-              id={id}
-              color={color}
-            />
-          </div>
-        )}
-      </Draggable>
-    ))}
+    {tasks?.map(
+      ({ id, name, description }, index) =>
+        name && (
+          <Draggable key={id} draggableId={`${columnId}-${id}`} index={index}>
+            {(draggableProvided) => (
+              <div
+                {...draggableProvided.dragHandleProps}
+                {...draggableProvided.draggableProps}
+                ref={draggableProvided.innerRef}
+              >
+                <Task
+                  onEdit={onEdit}
+                  columnId={columnId}
+                  onDelete={onDelete}
+                  title={name}
+                  description={description}
+                  key={id}
+                  id={id}
+                  color={color}
+                />
+              </div>
+            )}
+          </Draggable>
+        )
+    )}
   </>
 );

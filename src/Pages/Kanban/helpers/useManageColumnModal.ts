@@ -60,27 +60,27 @@ export const useManageColumnModal = ({
   useEffect(() => {
     const isValuesValid =
       name.trim().length && Boolean(numberOfTasks) && +numberOfTasks > 0;
-    if (modalInfo.title === 'edit' && modalInfo.tasks.length > +numberOfTasks) {
-      setError({
-        errorMessage: `Maximum number of tasks can't be smaller than ${modalInfo.tasks.length} `,
-        isError: true,
-      });
-    } else {
-      setError({
-        errorMessage: '',
-        isError: false || !isValuesValid,
-      });
-    }
+
     if (modalInfo.title === 'edit') {
+      const isMaximumNumberOfTasksValid =
+        modalInfo.tasks.length <= +numberOfTasks;
       const haveValueChanged =
         name.trim() !== modalInfo.name ||
         +numberOfTasks !== modalInfo.numberOfTasks ||
         color !== modalInfo.color;
 
-      setError((prevError) => ({
-        ...prevError,
-        isError: !isValuesValid || !haveValueChanged,
-      }));
+      setError({
+        errorMessage: isMaximumNumberOfTasksValid
+          ? ''
+          : `Maximum number of tasks can't be smaller than ${modalInfo.tasks.length}`,
+        isError:
+          !isValuesValid || !haveValueChanged || !isMaximumNumberOfTasksValid,
+      });
+    } else {
+      setError({
+        errorMessage: '',
+        isError: !isValuesValid,
+      });
     }
   }, [name, numberOfTasks, color]);
 
