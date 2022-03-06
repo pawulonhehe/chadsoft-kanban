@@ -1,4 +1,26 @@
 .kanban {
   display: flex;
+  flex-direction: row;
   height: 80%;
+  justify-content: flex-start;
+  margin: 1%; 
+}
+
+.addcolumnbutton {
+  background-color: #34495e;
+  border: solid transparent;
+  border-radius: 7px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  height: 12%;
+  margin-left: 2%;
+  margin-top: 2%;
+  opacity: 0.3;
+  padding: 5px;
+  transition-duration: 0.4s;
+}
+
+.add-column-button:hover {
+  background-color: #9b59b6;
 }
