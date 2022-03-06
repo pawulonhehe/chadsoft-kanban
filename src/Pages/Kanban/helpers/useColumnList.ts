@@ -40,7 +40,7 @@ export const useColumnList = () => {
       taskId: '',
       title: 'add',
     });
-    useCustomToast(`Task successfully deleted`);
+    useCustomToast({ text: 'Task successfully deleted', type: 'success' });
     queryClient.invalidateQueries('columns');
   };
 

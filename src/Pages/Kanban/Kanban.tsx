@@ -20,19 +20,19 @@ const Kanban = () => {
         onDelete={deleteColumnHandler}
         onEdit={editColumnHandler}
       />
+      <button
+        className={classes['kanban__add-column-button']}
+        onClick={showModalHandler}
+        type="button"
+      >
+        Add Column
+      </button>
       {manageColumnModalInfo.isOpen && (
         <ManageColumnModal
           modalInfo={manageColumnModalInfo}
           onClose={hideModalHandler}
         />
       )}
-      <button
-        className={classes.addcolumnbutton}
-        onClick={showModalHandler}
-        type="button"
-      >
-        Add Column
-      </button>
     </div>
   );
 };

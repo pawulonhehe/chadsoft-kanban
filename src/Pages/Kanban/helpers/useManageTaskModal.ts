@@ -35,7 +35,10 @@ export const useManageTaskModal = ({
 
   const onSuccess = () => {
     queryClient.invalidateQueries('columns');
-    useCustomToast(`Task ${name} successfully ${modalInfo.title}ed`);
+    useCustomToast({
+      text: `Task successfully ${modalInfo.title}ed`,
+      type: 'success',
+    });
 
     onClose();
   };
