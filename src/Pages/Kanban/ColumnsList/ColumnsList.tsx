@@ -50,6 +50,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
             disabled={tasks.length >= numberOfTasks}
             type="button"
             onClick={() => showModalHandler(id)}
+            data-testid={`${name}-column-add-task`}
           >
             Add Task
           </button>

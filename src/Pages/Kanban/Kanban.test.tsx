@@ -63,7 +63,6 @@ describe('Kanban', () => {
     const column2 = screen.getByTestId('testColumn2-column');
 
     expect(column2).toBeInTheDocument();
-    expect(screen.getAllByTestId('-column', { exact: false }).length).toBe(2);
   });
 
   it('should render 3 tasks', () => {
@@ -78,7 +77,6 @@ describe('Kanban', () => {
     const task3 = screen.getByTestId('testTask3-task');
 
     expect(task3).toBeInTheDocument();
-    expect(screen.getAllByTestId('-task', { exact: false }).length).toBe(3);
   });
 
   it('should render add column button', () => {

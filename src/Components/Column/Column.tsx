@@ -56,7 +56,6 @@ export const Column = ({
       >
         <div className={classes['column__info']}>
           <div style={{ cursor: 'pointer' }}>{title}</div>
-
           <div>
             {tasks.length}/{numberOfTasks}
           </div>
