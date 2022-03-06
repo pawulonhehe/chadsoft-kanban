@@ -41,6 +41,7 @@ export const ManageTaskModal = ({
           {modalInfo.title} task
         </h1>
         <TextField
+          data-testid="task-name-input"
           value={name}
           onChange={changeNameHandler}
           margin="normal"
@@ -50,6 +51,7 @@ export const ManageTaskModal = ({
         />
         <div style={{ width: '80%' }}>
           <TextField
+            data-testid="task-description-input"
             value={description}
             onChange={changeDescriptionHandler}
             margin="normal"

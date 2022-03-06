@@ -44,6 +44,7 @@ export const ManageColumnModal = ({
           {modalInfo.title} column
         </h1>
         <TextField
+          data-testid="column-name-input"
           margin="normal"
           label="Column name"
           color="secondary"
@@ -52,6 +53,7 @@ export const ManageColumnModal = ({
           onChange={changeNameHandler}
         />
         <TextField
+          data-testid="column-number-of-tasks-input"
           margin="normal"
           label="Maximum number of tasks"
           color="info"
