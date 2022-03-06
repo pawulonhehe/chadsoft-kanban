@@ -3,6 +3,7 @@ import { ColumnType, TaskType } from 'shared/types/Kanban';
 import { TasksList } from 'Pages/Kanban/TasksList/TasksList';
 import { ManageTaskModal } from 'Pages/Kanban/ManageTaskModal/ManageTaskModal';
 import { useColumnList } from 'Pages/Kanban/helpers/useColumnList';
+import classes from './ColumnList.module.scss';
 
 type ColumnsListType = {
   onDelete: (id: string) => void;
@@ -45,6 +46,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
           onEdit={onEdit}
         >
           <button
+            className={classes['add-task-button']}
             disabled={tasks.length >= numberOfTasks}
             type="button"
             onClick={() => showModalHandler(id)}

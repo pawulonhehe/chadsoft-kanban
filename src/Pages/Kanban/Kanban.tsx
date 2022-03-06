@@ -15,9 +15,6 @@ const Kanban = () => {
 
   return (
     <div className={classes.kanban}>
-      <button onClick={showModalHandler} type="button">
-        Add Column
-      </button>
       <ColumnsList
         columns={data}
         onDelete={deleteColumnHandler}
@@ -29,6 +26,13 @@ const Kanban = () => {
           onClose={hideModalHandler}
         />
       )}
+      <button
+        className={classes.addcolumnbutton}
+        onClick={showModalHandler}
+        type="button"
+      >
+        Add Column
+      </button>
     </div>
   );
 };
