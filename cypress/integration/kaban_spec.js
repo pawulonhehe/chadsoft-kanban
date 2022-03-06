@@ -42,7 +42,7 @@ describe('Kanban', () => {
       .clear()
       .type(`69`);
     cy.get('button[type=submit]').click();
-    cy.get('div').contains('Column ColumnName successfully added');
+    cy.get('div').contains('Column successfully added');
     cy.get('div').contains('ColumnName');
     cy.get('div').contains('0/69');
   });
@@ -86,7 +86,7 @@ describe('Kanban', () => {
 
     // Should edit column functionality work fine
     cy.get('button[type=submit]').click();
-    cy.get('div').contains('Column EditedColumnName successfully edited');
+    cy.get('div').contains('Column successfully edited');
     cy.get('div').contains('EditedColumnName');
     cy.get('div').contains('0/69');
   });
@@ -125,7 +125,7 @@ describe('Kanban', () => {
 
     // Should create new task functionality work fine
     cy.get('button[type=submit]').click();
-    cy.get('div').contains('Task TaskName successfully added');
+    cy.get('div').contains('Task successfully added');
     cy.get('div').contains('TaskName');
     cy.get('div').contains('TaskDescription');
   });
@@ -169,7 +169,7 @@ describe('Kanban', () => {
 
     // Should edit task functionality work fine
     cy.get('button[type=submit]').click();
-    cy.get('div').contains('Task EditedTaskName successfully edited');
+    cy.get('div').contains('Task successfully edited');
     cy.get('div').contains('EditedTaskName');
     cy.get('div').contains('TaskDescription');
   });

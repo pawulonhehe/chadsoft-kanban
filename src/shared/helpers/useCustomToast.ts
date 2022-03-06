@@ -1,7 +1,13 @@
-import { toast } from 'react-toastify';
+import { toast, TypeOptions } from 'react-toastify';
 
-export const useCustomToast = (text: string) =>
+type UseCustomToastType = {
+  text: string;
+  type: TypeOptions;
+};
+
+export const useCustomToast = ({ text, type }: UseCustomToastType) =>
   toast.success(text, {
+    type,
     position: 'top-right',
     autoClose: 2000,
     hideProgressBar: false,

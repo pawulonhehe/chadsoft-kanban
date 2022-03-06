@@ -31,7 +31,8 @@
     color: #000;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    height: 100%;
+    overflow: hidden;
     overflow-y: auto;
     padding: 0.3rem;
   }

@@ -42,7 +42,7 @@ export const useKanban = () => {
       id: '',
       title: 'add',
     });
-    useCustomToast(`Column successfully deleted`);
+    useCustomToast({ text: 'Column successfully deleted', type: 'success' });
     queryClient.invalidateQueries('columns');
   };
 
