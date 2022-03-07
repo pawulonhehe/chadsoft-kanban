@@ -40,7 +40,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
 
   const testFun = (result: DropResult) => {
     const { source, destination } = result;
-    if (source.droppableId === destination?.droppableId) {
+    if (source.droppableId === destination?.droppableId || !destination) {
       return;
     }
 

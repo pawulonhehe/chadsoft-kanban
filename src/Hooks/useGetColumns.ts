@@ -30,5 +30,13 @@ export const useGetColumns = (): useGetColumnsType => {
 
   const { data, isLoading } = useQuery('columns', getColumns);
 
-  return data ? { data, isLoading } : { data: [], isLoading: false };
+  return data
+    ? {
+        data: data.map((column) => ({
+          ...column,
+          tasks: column.tasks.filter(({ name }) => name),
+        })),
+        isLoading,
+      }
+    : { data: [], isLoading: false };
 };
