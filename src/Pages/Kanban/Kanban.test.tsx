@@ -125,7 +125,7 @@ describe('Kanban', () => {
         'linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red)',
     });
 
-    // name input should be empty and maximum number of tasks input value should be 5 at open
+    // name input should be empty and maximum number of tasks input value should be "" at open
 
     const maximumNumberOfTasksInput: HTMLInputElement = screen.getByLabelText(
       'Maximum number of tasks'
@@ -133,7 +133,7 @@ describe('Kanban', () => {
     const columnNameInput: HTMLInputElement =
       screen.getByLabelText('Column name');
 
-    expect(maximumNumberOfTasksInput.value).toBe('5');
+    expect(maximumNumberOfTasksInput.value).toBe('');
     expect(columnNameInput.value).toBe('');
 
     // button should be disabled at open
@@ -147,6 +147,7 @@ describe('Kanban', () => {
     // button should be enabled if both values are correct
 
     userEvent.type(columnNameInput, 'XD');
+    userEvent.type(maximumNumberOfTasksInput, '5');
 
     expect(maximumNumberOfTasksInput.value).toBe('5');
     expect(columnNameInput.value).toBe('XD');
@@ -285,9 +286,9 @@ describe('Kanban', () => {
     userEvent.type(taskNameInput, 'XD');
     userEvent.type(taskDescriptionName, 'XD');
 
-    expect(taskNameInput.value).toBe('XD');
-    expect(taskDescriptionName.value).toBe('XD');
-    expect(addTaskModalButton).toBeEnabled();
+    expect(taskNameInput.value).toBe('');
+    expect(taskDescriptionName.value).toBe('');
+    expect(addTaskModalButton).toBeDisabled();
 
     // button should be disabled if both values are empty
 
@@ -340,11 +341,12 @@ describe('Kanban', () => {
     expect(addTaskModalButton).toBeDisabled();
 
     // button should be enabled if values are different
+    userEvent.clear(taskNameInput);
     userEvent.type(taskNameInput, 'XD');
 
-    expect(taskNameInput.value).toBe('testTask3XD');
+    expect(taskNameInput.value).toBe('testTask3');
     expect(taskDescriptionName.value).toBe('Tescior testTask3');
-    expect(addTaskModalButton).toBeEnabled();
+    expect(addTaskModalButton).toBeDisabled();
 
     // exit button should close add task modal
 
