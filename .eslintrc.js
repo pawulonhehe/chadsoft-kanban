@@ -2,41 +2,59 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true
+    jest: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'security', 'jest-dom', 'testing-library'],
-  extends: ["plugin:react/recommended", "airbnb", "plugin:security/recommended", "plugin:import/typescript", "plugin:jest-dom/recommended", "plugin:testing-library/react", "prettier", "plugin:storybook/recommended"],
+  plugins: ['react', '@typescript-eslint', 'security'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:security/recommended',
+    'plugin:import/typescript',
+    'prettier',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+  ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
   rules: {
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
-    'react/jsx-filename-extension': ['warn', {
-      extensions: ['.tsx']
-    }],
-    'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': ['error'],
-    'react/react-in-jsx-scope': 'off',
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: true,
-      optionalDependencies: false,
-      peerDependencies: false
-    }],
-    'import/extensions': ['error', 'ignorePackages', {
-      ts: 'never',
-      tsx: 'never'
-    }],
-    'react/jsx-props-no-spreading': ['error'],
-    'arrow-body-style': 'off',
-    'react/function-component-definition': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-explicit-any': ['error'],
-    '@typescript-eslint/no-unused-vars': ['error']
-  }
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'no-use-before-define': 1,
+    'arrow-body-style': 0,
+    'react/function-component-definition': 0,
+    '@typescript-eslint/no-use-before-define': 1,
+    'no-unused-vars': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-unused-vars': 1,
+    'react/react-in-jsx-scope': 0,
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'import/no-extraneous-dependencies': [1, { devDependencies: true }],
+    'import/prefer-default-export': 0,
+    'dot-notation': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'react/require-default-props': 0,
+    'no-unused-expressions': 0,
+    'react/jsx-no-useless-fragment': [1, { allowExpressions: true }],
+    'react/jsx-props-no-spreading': 0,
+  },
 };

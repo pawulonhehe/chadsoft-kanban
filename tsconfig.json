@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
