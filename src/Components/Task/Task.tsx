@@ -1,5 +1,6 @@
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { trimText } from 'shared/helpers/formatters';
 import classes from './Task.module.scss';
 
 type TaskProps = {
@@ -42,7 +43,7 @@ export const Task = ({
         className={classes['task__header']}
         style={{ backgroundColor: color }}
       >
-        {title}
+        {trimText(title, 10)}
         <div className={classes['task__icons']}>
           <EditIcon
             onClick={editTaskHandler}
@@ -58,7 +59,9 @@ export const Task = ({
           />
         </div>
       </div>
-      <div className={classes['task__content']}>{description}</div>
+      <div className={classes['task__content']}>
+        {trimText(description, 125)}
+      </div>
     </article>
   );
 };

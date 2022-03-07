@@ -15,25 +15,38 @@ export const useManageColumnModal = ({
   modalInfo,
 }: useManageColumnModalProps) => {
   const queryClient = useQueryClient();
-  const [error, setError] = useState({ isError: false, errorMessage: '' });
   const [color, setColor] = useState('#2e7d32');
+  const [isValuesTouched, setIsValuesTouched] = useState({
+    name: false,
+    numberOfTasks: false,
+  });
   const [inputValues, setInputValues] = useState({
     name: '',
-    numberOfTasks: '5',
+    numberOfTasks: '',
   });
   const { name, numberOfTasks } = inputValues;
 
-  const changeNameHandler = (event: ChangeEvent<HTMLInputElement>) =>
+  const changeNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValues((prevValues) => ({
       ...prevValues,
       name: event.target.value,
     }));
+    setIsValuesTouched((prevValues) => ({
+      ...prevValues,
+      name: true,
+    }));
+  };
 
-  const changeNumberOfTasksHandler = (event: ChangeEvent<HTMLInputElement>) =>
+  const changeNumberOfTasksHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValues((prevValues) => ({
       ...prevValues,
       numberOfTasks: event.target.value,
     }));
+    setIsValuesTouched((prevValues) => ({
+      ...prevValues,
+      numberOfTasks: true,
+    }));
+  };
 
   const changeColorHandler = (pickedColor: ColorResult) =>
     setColor(pickedColor.hex);
@@ -57,32 +70,22 @@ export const useManageColumnModal = ({
     }
   }, []);
 
-  useEffect(() => {
-    const isValuesValid =
-      name.trim().length && Boolean(numberOfTasks) && +numberOfTasks > 0;
+  const isNameInvalid = !name.trim().length && isValuesTouched.name;
+  const isNumberOfTasksInvalid =
+    !numberOfTasks.trim().match(/^[1-9]+[0-9]*$/) &&
+    isValuesTouched.numberOfTasks;
 
-    if (modalInfo.title === 'edit') {
-      const isMaximumNumberOfTasksValid =
-        modalInfo.tasks.length <= +numberOfTasks;
-      const haveValueChanged =
-        name.trim() !== modalInfo.name ||
+  const numberOfTasksErrorMessage =
+    modalInfo.tasks.length > +numberOfTasks &&
+    +numberOfTasks > 0 &&
+    `Column already have ${modalInfo.tasks.length} declared tasks, so you can't change maximum number of tasks to ${numberOfTasks}`;
+
+  const haveValuesChanged =
+    modalInfo.title === 'edit'
+      ? name.trim() !== modalInfo.name ||
         +numberOfTasks !== modalInfo.numberOfTasks ||
-        color !== modalInfo.color;
-
-      setError({
-        errorMessage: isMaximumNumberOfTasksValid
-          ? ''
-          : `Maximum number of tasks can't be smaller than ${modalInfo.tasks.length}`,
-        isError:
-          !isValuesValid || !haveValueChanged || !isMaximumNumberOfTasksValid,
-      });
-    } else {
-      setError({
-        errorMessage: '',
-        isError: !isValuesValid,
-      });
-    }
-  }, [name, numberOfTasks, color]);
+        color !== modalInfo.color
+      : isValuesTouched.name && isValuesTouched.numberOfTasks;
 
   const { mutate, isLoading } = useManageColumn(onSuccess);
 
@@ -120,7 +123,10 @@ export const useManageColumnModal = ({
     changeNumberOfTasksHandler,
     changeNameHandler,
     isLoading,
-    error,
+    isNameInvalid,
+    isNumberOfTasksInvalid,
+    haveValuesChanged,
+    numberOfTasksErrorMessage,
     color,
     name,
     numberOfTasks,

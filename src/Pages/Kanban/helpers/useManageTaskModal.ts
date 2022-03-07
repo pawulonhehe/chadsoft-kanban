@@ -14,24 +14,37 @@ export const useManageTaskModal = ({
   modalInfo,
 }: UseManageTaskModalProps) => {
   const queryClient = useQueryClient();
-  const [error, setError] = useState(false);
+  const [isValuesTouched, setIsValuesTouched] = useState({
+    name: false,
+    description: false,
+  });
   const [inputValues, setInputValues] = useState({
     name: '',
     description: '',
   });
   const { name, description } = inputValues;
 
-  const changeNameHandler = (event: ChangeEvent<HTMLInputElement>) =>
+  const changeNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsValuesTouched((prevValues) => ({
+      ...prevValues,
+      name: true,
+    }));
     setInputValues((prevValues) => ({
       ...prevValues,
       name: event.target.value,
     }));
+  };
 
-  const changeDescriptionHandler = (event: ChangeEvent<HTMLInputElement>) =>
+  const changeDescriptionHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsValuesTouched((prevValues) => ({
+      ...prevValues,
+      description: true,
+    }));
     setInputValues((prevValues) => ({
       ...prevValues,
       description: event.target.value,
     }));
+  };
 
   const onSuccess = () => {
     queryClient.invalidateQueries('columns');
@@ -42,26 +55,22 @@ export const useManageTaskModal = ({
 
     onClose();
   };
+
   useEffect(() => {
-    modalInfo.title === 'edit' &&
-      setInputValues({
-        name: modalInfo.name,
-        description: modalInfo.description,
-      });
+    setInputValues({
+      name: modalInfo.name,
+      description: modalInfo.description,
+    });
   }, []);
 
-  useEffect(() => {
-    const isValuesValid = name.trim().length && description.trim().length;
-
-    setError(!isValuesValid);
-    if (modalInfo.title === 'edit') {
-      const haveValuesChange =
-        name.trim() !== modalInfo.name ||
-        description.trim() !== modalInfo.description;
-
-      setError(!isValuesValid || !haveValuesChange);
-    }
-  }, [name, description]);
+  const isNameInvalid = !name.trim().length && isValuesTouched.name;
+  const isDescriptionInvalid =
+    !description.trim().length && isValuesTouched.description;
+  const haveValuesChanged =
+    modalInfo.title === 'edit'
+      ? name.trim() !== modalInfo.name ||
+        description.trim() !== modalInfo.description
+      : isValuesTouched.name && isValuesTouched.description;
 
   const { mutate, isLoading } = useManageColumn(onSuccess);
 
@@ -91,7 +100,9 @@ export const useManageTaskModal = ({
     changeDescriptionHandler,
     changeNameHandler,
     isLoading,
-    error,
+    isNameInvalid,
+    isDescriptionInvalid,
+    haveValuesChanged,
     name,
     description,
   };

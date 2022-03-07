@@ -38,7 +38,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
 
   const { moveTask, sourceColumnId, destinationColumnId } = useMoveTask();
 
-  const testFun = (result: DropResult) => {
+  const handleMoveTask = (result: DropResult) => {
     const { source, destination } = result;
     if (source.droppableId === destination?.droppableId || !destination) {
       return;
@@ -65,7 +65,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
   };
 
   return (
-    <DragDropContext onDragEnd={testFun}>
+    <DragDropContext onDragEnd={handleMoveTask}>
       {columns.map(({ name, color, id, numberOfTasks, tasks }) => (
         <Droppable key={id} droppableId={id}>
           {(droppableProvided) => (
@@ -83,7 +83,13 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
                 onEdit={onEdit}
               >
                 {id === destinationColumnId || id === sourceColumnId ? (
-                  <div style={{ margin: 'auto 0' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: `${217.6 * tasks.length + 48.4}px`,
+                    }}
+                  >
                     <CircularProgress color="success" />
                   </div>
                 ) : (

@@ -19,10 +19,15 @@ export const ManageTaskModal = ({
     changeDescriptionHandler,
     changeNameHandler,
     isLoading,
-    error,
+    isNameInvalid,
+    isDescriptionInvalid,
+    haveValuesChanged,
     name,
     description,
   } = useManageTaskModal({ onClose, modalInfo });
+
+  const isButtonDisabled =
+    isNameInvalid || isDescriptionInvalid || isLoading || !haveValuesChanged;
 
   return (
     <Modal onClose={onClose}>
@@ -41,6 +46,8 @@ export const ManageTaskModal = ({
           {modalInfo.title} task
         </h1>
         <TextField
+          helperText={isNameInvalid && 'Task Name cannot be empty'}
+          error={isNameInvalid}
           data-testid="task-name-input"
           value={name}
           onChange={changeNameHandler}
@@ -51,6 +58,8 @@ export const ManageTaskModal = ({
         />
         <div style={{ width: '80%' }}>
           <TextField
+            helperText={isDescriptionInvalid && 'Task Name cannot be empty'}
+            error={isDescriptionInvalid}
             data-testid="task-description-input"
             value={description}
             onChange={changeDescriptionHandler}
@@ -64,7 +73,7 @@ export const ManageTaskModal = ({
           />
         </div>
         <Button
-          disabled={error || isLoading}
+          disabled={isButtonDisabled}
           type="submit"
           variant="contained"
           color="success"
