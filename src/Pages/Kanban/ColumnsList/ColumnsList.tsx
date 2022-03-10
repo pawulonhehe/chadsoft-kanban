@@ -7,6 +7,7 @@ import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { CircularProgress } from '@mui/material';
 import { useCustomToast } from 'shared/helpers/useCustomToast';
 import { useMoveTask } from 'Pages/Kanban/helpers/useMoveTask';
+import AddIcon from '@mui/icons-material/Add';
 import classes from './ColumnList.module.scss';
 
 type ColumnsListType = {
@@ -106,6 +107,7 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
                       onClick={() => showModalHandler(id)}
                       data-testid={`${name}-column-add-task`}
                     >
+                      <AddIcon />
                       Add Task
                     </button>
                     <TasksList

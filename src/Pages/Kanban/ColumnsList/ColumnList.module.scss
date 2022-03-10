@@ -1,19 +1,20 @@
 .column-list {
   &__add-task-button {
-    background-color: #34495e;
+    align-items: center;
+    background-color: #f7f7f7;
     border: solid transparent;
     border-radius: 5px;
-    color: #fff;
+    color: #000;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 8px;
-    padding: 5px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0.25rem;
     transition-duration: 0.4s;
-
+    width: 100%;
+    
     &:hover {
-      background-color: #9b59b6;
+      background-color: #ebebeb;
     }
   }
 }

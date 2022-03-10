@@ -9,22 +9,21 @@
   width: calc(100% - 2rem);
 
   &__add-column-button {
-    background-color: #34495e;
+    align-items: center;
+    background-color: #e7e6e6;
     border: solid transparent;
-    border-radius: 7px;
-    color: #fff;
+    border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    height: 90px;
-    margin-left: 2%;
-    margin-right: 2%;
-    opacity: 0.3;
-    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 2.5rem;
+    justify-content: center;
+    opacity: 0.5;
     transition-duration: 0.4s;
+    width: 14.5rem;
 
     &:hover {
-      background-color: #9b59b6;
+      background-color: #ccc7c7;
     }
   }
 }
