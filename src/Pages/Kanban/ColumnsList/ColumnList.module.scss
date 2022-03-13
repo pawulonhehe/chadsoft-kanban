@@ -1,7 +1,7 @@
 .column-list {
   &__add-task-button {
     align-items: center;
-    background-color: #f7f7f7;
+    background-color: #ecf0f1;
     border: solid transparent;
     border-radius: 5px;
     color: #000;
@@ -11,8 +11,8 @@
     justify-content: center;
     margin: 0.25rem;
     transition-duration: 0.4s;
-    width: 100%;
-    
+    width: 93%;
+
     &:hover {
       background-color: #ebebeb;
     }

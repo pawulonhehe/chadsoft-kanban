@@ -95,6 +95,13 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
                   </div>
                 ) : (
                   <>
+                    <TasksList
+                      columnId={id}
+                      onDelete={deleteTaskHandler}
+                      onEdit={editTaskHandler}
+                      color={color}
+                      tasks={tasks}
+                    />
                     <button
                       className={classes['column-list__add-task-button']}
                       style={
@@ -110,13 +117,6 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
                       <AddIcon />
                       Add Task
                     </button>
-                    <TasksList
-                      columnId={id}
-                      onDelete={deleteTaskHandler}
-                      onEdit={editTaskHandler}
-                      color={color}
-                      tasks={tasks}
-                    />
                     {droppableProvided.placeholder}
                   </>
                 )}
