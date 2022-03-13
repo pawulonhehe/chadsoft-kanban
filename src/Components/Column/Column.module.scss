@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap');
+
 .column {
   border-radius: 0.5rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
@@ -13,8 +16,10 @@
     border-top-right-radius: 8px;
     color: #fff;
     display: flex;
-    font-size: 13px;
-    font-weight: 600;
+    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
     height: 2rem;
     justify-content: center;
     padding: 0.3rem;
@@ -30,11 +35,11 @@
   &__content {
     align-items: center;
     background-color: #f7f7f7;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     color: #000;
     display: flex;
     flex-direction: column;
     padding: 0.3rem;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
   }
 }

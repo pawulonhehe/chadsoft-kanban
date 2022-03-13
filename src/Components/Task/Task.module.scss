@@ -9,17 +9,21 @@
 
   &__header {
     align-items: center;
-    color: #fff;
-    display: flex;
-    font-family: 'Gotham';
-    font-weight: 600;
-    height: 2rem;
-    justify-content: center;
-    position: relative;
-    text-align: center;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    padding: 4px;
+    color: #fff;
+    display: flex;
+    font-family: 'Montserrat';
+    height: 1.8rem;
+    justify-content: center;
+    padding: 2px;
+    position: relative;
+    text-align: center;
+
+    &__icons {
+      color: #34495e;
+      margin-left: 0.5px;
+    }
   }
 
   &__content {
