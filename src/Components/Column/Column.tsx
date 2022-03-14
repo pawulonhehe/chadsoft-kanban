@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { TaskType } from 'shared/types/Kanban';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ReportIcon from '@mui/icons-material/Report';
 import classes from './Column.module.scss';
 
 type ColumnProps = {
@@ -56,10 +57,21 @@ export const Column = ({
       >
         <div className={classes['column__info']}>
           <div style={{ cursor: 'pointer' }}>{title}</div>
-          <div>
+          <div
+            className={
+              tasks.length > numberOfTasks
+                ? classes['column__count--warning']
+                : ''
+            }
+          >
             {tasks.length}/{numberOfTasks}
           </div>
         </div>
+        {tasks.length > numberOfTasks && (
+          <div className={classes['column__warrning--icon']}>
+            <ReportIcon fontSize="medium" />
+          </div>
+        )}
         <div className={classes['column__icons']}>
           <EditIcon
             style={{ cursor: 'pointer' }}

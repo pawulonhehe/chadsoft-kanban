@@ -1,7 +1,7 @@
 .task {
   background-color: #fff;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   display: column;
   height: 13rem;
   margin: 0.3rem;
@@ -19,11 +19,6 @@
     padding: 2px;
     position: relative;
     text-align: center;
-
-    &__icons {
-      color: #34495e;
-      margin-left: 0.5px;
-    }
   }
 
   &__content {
@@ -34,6 +29,6 @@
 
   &__icons {
     position: absolute;
-    right: 0;
+    right: 5px;
   }
 }
