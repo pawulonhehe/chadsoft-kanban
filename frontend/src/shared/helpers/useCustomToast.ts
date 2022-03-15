@@ -3,13 +3,18 @@ import { toast, TypeOptions } from 'react-toastify';
 type UseCustomToastType = {
   text: string;
   type: TypeOptions;
+  autoClose?: number;
 };
 
-export const useCustomToast = ({ text, type }: UseCustomToastType) =>
+export const useCustomToast = ({
+  text,
+  type,
+  autoClose = 2000,
+}: UseCustomToastType) =>
   toast.success(text, {
     type,
     position: 'top-right',
-    autoClose: 2000,
+    autoClose,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: false,

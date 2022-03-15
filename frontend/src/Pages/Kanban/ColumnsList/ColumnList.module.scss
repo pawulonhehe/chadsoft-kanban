@@ -17,4 +17,10 @@
       background-color: #ebebeb;
     }
   }
+
+  &__task-list {
+    max-height: 69.3vh;
+    overflow-y: auto;
+    position: relative;
+  }
 }

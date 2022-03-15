@@ -3,6 +3,7 @@ import { useCustomToast } from 'shared/helpers/useCustomToast';
 import { useQueryClient } from 'react-query';
 import { TaskModalInfoType } from 'shared/types/Kanban';
 import { useManageColumn } from 'Hooks/useManageColumn';
+import { useGetColumns } from 'Hooks/useGetColumns';
 
 type UseManageTaskModalProps = {
   onClose: () => void;
@@ -23,6 +24,7 @@ export const useManageTaskModal = ({
     description: '',
   });
   const { name, description } = inputValues;
+  const { data: columns } = useGetColumns();
 
   const changeNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setIsValuesTouched((prevValues) => ({
@@ -52,6 +54,14 @@ export const useManageTaskModal = ({
       text: `Task successfully ${modalInfo.title}ed`,
       type: 'success',
     });
+    const column = columns.find(({ id }) => id === modalInfo.columnId);
+    if (column && column?.tasks.length >= column?.numberOfTasks) {
+      useCustomToast({
+        text: `Maximum number of tasks allowed in ${column.name} column has been reached`,
+        type: 'error',
+        autoClose: 4000,
+      });
+    }
 
     onClose();
   };
