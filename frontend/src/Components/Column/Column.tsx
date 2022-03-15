@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
+import { useCustomToast } from 'shared/helpers/useCustomToast';
 import { TaskType } from 'shared/types/Kanban';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ReportIcon from '@mui/icons-material/Report';
+import { Tooltip } from '@mui/material';
 import classes from './Column.module.scss';
 
 type ColumnProps = {
@@ -38,7 +40,16 @@ export const Column = ({
   tasks,
   children,
 }: ColumnProps) => {
-  const deleteColumnHandler = () => onDelete(id);
+  const deleteColumnHandler = () => {
+    if (tasks.length) {
+      useCustomToast({
+        text: 'Remove tasks from column before removing it',
+        type: 'error',
+      });
+    } else {
+      onDelete(id);
+    }
+  };
 
   const editColumnHandler = () =>
     onEdit({
@@ -68,9 +79,14 @@ export const Column = ({
           </div>
         </div>
         {tasks.length > numberOfTasks && (
-          <div className={classes['column__warrning--icon']}>
-            <ReportIcon fontSize="medium" />
-          </div>
+          <Tooltip
+            placement="bottom"
+            title={`Maximum number of tasks allowed in ${title} column has been reached. Close, move or remove task to fix this error!`}
+          >
+            <div className={classes['column__warrning--icon']}>
+              <ReportIcon fontSize="medium" />
+            </div>
+          </Tooltip>
         )}
         <div className={classes['column__icons']}>
           <EditIcon

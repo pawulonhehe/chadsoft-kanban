@@ -4,8 +4,7 @@ import { TasksList } from 'Pages/Kanban/TasksList/TasksList';
 import { ManageTaskModal } from 'Pages/Kanban/ManageTaskModal/ManageTaskModal';
 import { useColumnList } from 'Pages/Kanban/helpers/useColumnList';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-import { CircularProgress } from '@mui/material';
-import { useCustomToast } from 'shared/helpers/useCustomToast';
+import { CircularProgress, Backdrop } from '@mui/material';
 import { useMoveTask } from 'Pages/Kanban/helpers/useMoveTask';
 import AddIcon from '@mui/icons-material/Add';
 import classes from './ColumnList.module.scss';
@@ -37,19 +36,18 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
     hideModalHandler,
   } = useColumnList();
 
-  const { moveTask, sourceColumnId, destinationColumnId } = useMoveTask();
+  const {
+    moveTask,
+    sourceColumnId,
+    destinationColumnId,
+    setMovedTaskIndex,
+    movedTaskIndex,
+  } = useMoveTask();
 
   const handleMoveTask = (result: DropResult) => {
     const { source, destination } = result;
+    setMovedTaskIndex(source.index);
     if (source.droppableId === destination?.droppableId || !destination) {
-      return;
-    }
-
-    const destinationColumn = columns.find(
-      ({ id }) => id === destination?.droppableId
-    );
-    if (destinationColumn?.numberOfTasks === destinationColumn?.tasks.length) {
-      useCustomToast({ text: 'Something went wrong', type: 'error' });
       return;
     }
 
@@ -83,37 +81,44 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
                 onDelete={onDelete}
                 onEdit={onEdit}
               >
-                {id === destinationColumnId || id === sourceColumnId ? (
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      height: `${217.6 * tasks.length + 48.4}px`,
-                    }}
-                  >
-                    <CircularProgress color="success" />
-                  </div>
-                ) : (
-                  <>
+                <>
+                  {destinationColumnId && sourceColumnId && (
+                    <Backdrop
+                      open
+                      sx={{
+                        color: '#fff',
+                        zIndex: (theme) => theme.zIndex.drawer + 1,
+                      }}
+                    >
+                      <CircularProgress color="success" />
+                    </Backdrop>
+                  )}
+                  <div className={classes['column-list__task-list']}>
                     <TasksList
                       columnId={id}
                       onDelete={deleteTaskHandler}
                       onEdit={editTaskHandler}
                       color={color}
-                      tasks={tasks}
+                      tasks={
+                        id === sourceColumnId
+                          ? tasks.filter(
+                              (task, index) => index !== movedTaskIndex
+                            )
+                          : tasks
+                      }
                     />
-                    <button
-                      className={classes['column-list__add-task-button']}
-                      type="button"
-                      onClick={() => showModalHandler(id)}
-                      data-testid={`${name}-column-add-task`}
-                    >
-                      <AddIcon />
-                      Add Task
-                    </button>
                     {droppableProvided.placeholder}
-                  </>
-                )}
+                  </div>
+                  <button
+                    className={classes['column-list__add-task-button']}
+                    type="button"
+                    onClick={() => showModalHandler(id)}
+                    data-testid={`${name}-column-add-task`}
+                  >
+                    <AddIcon />
+                    Add Task
+                  </button>
+                </>
               </Column>
             </div>
           )}

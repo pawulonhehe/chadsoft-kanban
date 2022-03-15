@@ -1,3 +1,4 @@
+import { useGetColumns } from 'Hooks/useGetColumns';
 import { useManageColumn } from 'Hooks/useManageColumn';
 import { useState } from 'react';
 import { useQueryClient } from 'react-query';
@@ -10,12 +11,14 @@ type UseMoveTaskType = {
   destinationColumnId: string;
 };
 export const useMoveTask = () => {
+  const [movedTaskIndex, setMovedTaskIndex] = useState<null | number>(null);
   const [moveTaskInfo, setMoveTaskInfo] = useState({
     sourceColumnId: '',
     destinationColumnId: '',
   });
   const queryClient = useQueryClient();
   const { mutateAsync } = useManageColumn(() => null);
+  const { data: columns } = useGetColumns();
 
   const moveTask = ({
     task,
@@ -42,10 +45,19 @@ export const useMoveTask = () => {
       }).then(() => {
         queryClient.invalidateQueries('columns').then(() => {
           useCustomToast({ text: 'Task successfully moved', type: 'success' });
+          const column = columns.find(({ id }) => id === destinationColumnId);
+          if (column && column?.tasks.length >= column?.numberOfTasks) {
+            useCustomToast({
+              text: `Maximum number of tasks allowed in ${column.name} column has been reached`,
+              type: 'error',
+              autoClose: 5000,
+            });
+          }
           setMoveTaskInfo({
             sourceColumnId: '',
             destinationColumnId: '',
           });
+          setMovedTaskIndex(null);
         });
       })
     );
@@ -55,5 +67,7 @@ export const useMoveTask = () => {
     moveTask,
     sourceColumnId: moveTaskInfo.sourceColumnId,
     destinationColumnId: moveTaskInfo.destinationColumnId,
+    movedTaskIndex,
+    setMovedTaskIndex,
   };
 };
