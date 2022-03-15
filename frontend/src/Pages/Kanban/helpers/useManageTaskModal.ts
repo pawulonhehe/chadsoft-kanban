@@ -82,16 +82,18 @@ export const useManageTaskModal = ({
           payload: {
             name: name.trim(),
             description: description.trim(),
+            column: modalInfo.columnId,
           },
-          endpoint: `columns/${modalInfo.columnId}/tasks.json`,
-        })
+          endpoint: `tasks`,
+      })
       : mutate({
           method: 'PUT',
           payload: {
             name: name.trim(),
             description: description.trim(),
+            column: modalInfo.columnId,
           },
-          endpoint: `columns/${modalInfo.columnId}/tasks/${modalInfo.taskId}.json`,
+          endpoint: `tasks/${modalInfo.taskId}`,
         });
   };
 

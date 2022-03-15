@@ -49,7 +49,7 @@ export const useKanban = () => {
   const { mutate } = useManageColumn(onSuccess);
 
   const deleteColumnHandler = (id: string) =>
-    mutate({ method: 'DELETE', endpoint: `columns/${id}.json` });
+    mutate({ method: 'DELETE', endpoint: `columns/${id}` });
 
   const editColumnHandler = ({
     id,

@@ -5,7 +5,7 @@ export const createColumn = async (data) => {
     const column = new Column(data);
     await column.save();
 
-    return { data: column, message: 'Utworzono coś' };
+    return { data: column, message: 'Task was created' };
   } catch (err) {
     return { status: 'invalid', message: err };
   }
