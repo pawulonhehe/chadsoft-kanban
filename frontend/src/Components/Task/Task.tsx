@@ -8,7 +8,7 @@ type TaskProps = {
   description: string;
   color: string;
   id: string;
-  onDelete: (columnId: string, taskId: string) => void;
+  onDelete: (taskId: string) => void;
   onEdit: ({
     columnId,
     name,
@@ -32,7 +32,7 @@ export const Task = ({
   onDelete,
   onEdit,
 }: TaskProps) => {
-  const deleteTaskHandler = () => onDelete(columnId, id);
+  const deleteTaskHandler = () => onDelete(id);
 
   const editTaskHandler = () =>
     onEdit({ columnId, name: title, description, taskId: id });

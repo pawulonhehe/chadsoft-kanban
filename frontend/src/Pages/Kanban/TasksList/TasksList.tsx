@@ -5,7 +5,7 @@ import { TaskType } from 'shared/types/Kanban';
 type TaskListProps = {
   tasks: TaskType[];
   color: string;
-  onDelete: (columnId: string, taskId: string) => void;
+  onDelete: (taskId: string) => void;
   onEdit: ({
     columnId,
     name,

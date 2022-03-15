@@ -10,33 +10,34 @@ type useGetColumnsType = {
 
 export const useGetColumns = (): useGetColumnsType => {
   const getColumns = (): Promise<ColumnType[]> =>
-    axios
-      .get('https://kanban-proje-default-rtdb.firebaseio.com/columns.json')
-      .then((resp) => {
-        const column = resp.data;
-        return column
-          ? Object.keys(column).map((id) => ({
-              id,
-              ...column[id],
-              tasks: column[id].tasks
-                ? Object.keys(column[id].tasks).map((taskId) => ({
-                    ...column[id].tasks[taskId],
-                    id: taskId,
-                  }))
-                : [],
-            }))
-          : [];
-      });
+    axios.get('http://localhost:3001/api/columns').then((resp) => {
+      const columns = resp.data;
+
+      return columns.map(
+        (column: {
+          [x: string]: any;
+          name: any;
+          numberOfTasks: any;
+          color: any;
+          tasks: any[];
+        }) => ({
+          id: column['_id'],
+          color: column.color,
+          name: column.name,
+          numberOfTasks: column.numberOfTasks,
+          tasks: column.tasks.map((task) => ({
+            id: task['_id'],
+            name: task.name,
+            description: task.description,
+            column: task.column,
+          })),
+        })
+      );
+    });
 
   const { data, isLoading } = useQuery('columns', getColumns);
 
   return data
-    ? {
-        data: data.map((column) => ({
-          ...column,
-          tasks: column.tasks.filter(({ name }) => name),
-        })),
-        isLoading,
-      }
+    ? {data, isLoading}
     : { data: [], isLoading: false };
 };

@@ -46,10 +46,10 @@ export const useColumnList = () => {
 
   const { mutate } = useManageColumn(onSuccess);
 
-  const deleteTaskHandler = (columnId: string, taskId: string) =>
+  const deleteTaskHandler = (taskId: string) =>
     mutate({
       method: 'DELETE',
-      endpoint: `columns/${columnId}/tasks/${taskId}.json`,
+      endpoint: `tasks/${taskId}`,
     });
 
   const editTaskHandler = ({

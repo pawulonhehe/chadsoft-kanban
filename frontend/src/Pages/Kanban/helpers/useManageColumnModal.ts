@@ -98,9 +98,8 @@ export const useManageColumnModal = ({
             color,
             name: name.trim(),
             numberOfTasks: +numberOfTasks,
-            tasks: [],
           },
-          endpoint: 'columns.json',
+          endpoint: 'columns',
         })
       : mutate({
           method: 'PUT',
@@ -108,12 +107,8 @@ export const useManageColumnModal = ({
             color,
             name: name.trim(),
             numberOfTasks: +numberOfTasks,
-            tasks: modalInfo.tasks.map(({ name: taskName, description }) => ({
-              name: taskName,
-              description,
-            })),
           },
-          endpoint: `columns/${modalInfo.id}.json`,
+          endpoint: `columns/${modalInfo.id}`,
         });
   };
 

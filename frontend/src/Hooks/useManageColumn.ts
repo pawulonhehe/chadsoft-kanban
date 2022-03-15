@@ -1,17 +1,16 @@
 import axios, { Method } from 'axios';
 import { useMutation } from 'react-query';
-import { TaskType } from 'shared/types/Kanban';
 
 type payloadTaskType = {
   name: string;
   description: string;
+  column: string;
 };
 
 type payloadColumnType = {
   color: string;
   name: string;
   numberOfTasks: number;
-  tasks: TaskType[] | { name: string; description: string }[];
 };
 
 type useManageTaskProps = {
@@ -23,9 +22,9 @@ type useManageTaskProps = {
 export const useManageColumn = (onSuccess: () => void) => {
   const manageColumn = ({ method, payload, endpoint }: useManageTaskProps) =>
     axios.request({
-      url: `https://kanban-proje-default-rtdb.firebaseio.com/${endpoint}`,
+      url: `http://localhost:3001/api/${endpoint}`,
       method,
-      data: payload ? JSON.stringify(payload) : null,
+      data: payload || null,
     });
 
   const { mutate, isLoading, mutateAsync } = useMutation(manageColumn, {
