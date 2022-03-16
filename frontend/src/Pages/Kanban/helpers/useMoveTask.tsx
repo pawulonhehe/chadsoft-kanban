@@ -46,11 +46,15 @@ export const useMoveTask = () => {
         queryClient.invalidateQueries('columns').then(() => {
           useCustomToast({ text: 'Task successfully moved', type: 'success' });
           const column = columns.find(({ id }) => id === destinationColumnId);
-          if (column && column?.tasks.length >= column?.numberOfTasks) {
+          if (
+            column &&
+            column?.tasks.length >= column?.numberOfTasks &&
+            column.numberOfTasks
+          ) {
             useCustomToast({
               text: `Maximum number of tasks allowed in ${column.name} column has been reached`,
               type: 'error',
-              autoClose: 5000,
+              autoClose: 2500,
             });
           }
           setMoveTaskInfo({

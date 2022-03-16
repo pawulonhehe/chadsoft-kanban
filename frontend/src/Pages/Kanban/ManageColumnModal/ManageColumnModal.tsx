@@ -24,17 +24,12 @@ export const ManageColumnModal = ({
     isNameInvalid,
     isNumberOfTasksInvalid,
     haveValuesChanged,
-    numberOfTasksErrorMessage,
     color,
     name,
     numberOfTasks,
   } = useManageColumnModal({ modalInfo, onClose });
   const isButtonDisabled =
-    isNameInvalid ||
-    isNumberOfTasksInvalid ||
-    isLoading ||
-    !haveValuesChanged ||
-    Boolean(numberOfTasksErrorMessage);
+    isNameInvalid || isNumberOfTasksInvalid || isLoading || !haveValuesChanged;
 
   return (
     <Modal onClose={onClose}>
@@ -76,7 +71,12 @@ export const ManageColumnModal = ({
           value={numberOfTasks}
           onChange={changeNumberOfTasksHandler}
         />
-        <p style={{ color }}>Choose main color for columns</p>
+        <p style={{ fontSize: '10px', marginTop: '-8px', color: '#0288d1' }}>
+          * Type 0 if you don`t want column to have maximum number of tasks
+        </p>
+        <p style={{ color, marginTop: '1rem' }}>
+          Choose main color for columns
+        </p>
         <div style={{ margin: '1rem' }}>
           <CirclePicker onChangeComplete={changeColorHandler} color={color} />
         </div>
@@ -88,11 +88,6 @@ export const ManageColumnModal = ({
         >
           {modalInfo.title}
         </Button>
-        {numberOfTasksErrorMessage && (
-          <p className={classes['manage-column-modal__error']}>
-            {numberOfTasksErrorMessage}
-          </p>
-        )}
       </form>
     </Modal>
   );

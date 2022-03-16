@@ -55,11 +55,15 @@ export const useManageTaskModal = ({
       type: 'success',
     });
     const column = columns.find(({ id }) => id === modalInfo.columnId);
-    if (column && column?.tasks.length >= column?.numberOfTasks) {
+    if (
+      column &&
+      column?.tasks.length >= column?.numberOfTasks &&
+      column.numberOfTasks
+    ) {
       useCustomToast({
         text: `Maximum number of tasks allowed in ${column.name} column has been reached`,
         type: 'error',
-        autoClose: 4000,
+        autoClose: 2500,
       });
     }
 
@@ -95,7 +99,7 @@ export const useManageTaskModal = ({
             column: modalInfo.columnId,
           },
           endpoint: `tasks`,
-      })
+        })
       : mutate({
           method: 'PUT',
           payload: {
