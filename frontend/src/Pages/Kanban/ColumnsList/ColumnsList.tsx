@@ -75,7 +75,9 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
               <Column
                 tasks={tasks}
                 title={name}
-                color={color}
+                color={
+                  tasks.length > numberOfTasks && numberOfTasks ? 'red' : color
+                }
                 numberOfTasks={numberOfTasks}
                 id={id}
                 onDelete={onDelete}
@@ -98,7 +100,11 @@ export const ColumnsList = ({ columns, onDelete, onEdit }: ColumnsListType) => {
                       columnId={id}
                       onDelete={deleteTaskHandler}
                       onEdit={editTaskHandler}
-                      color={color}
+                      color={
+                        tasks.length > numberOfTasks && numberOfTasks
+                          ? 'red'
+                          : color
+                      }
                       tasks={
                         id === sourceColumnId
                           ? tasks.filter(

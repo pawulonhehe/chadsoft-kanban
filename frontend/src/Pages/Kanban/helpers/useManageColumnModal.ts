@@ -72,13 +72,8 @@ export const useManageColumnModal = ({
 
   const isNameInvalid = !name.trim().length && isValuesTouched.name;
   const isNumberOfTasksInvalid =
-    !numberOfTasks.trim().match(/^[1-9]+[0-9]*$/) &&
+    !numberOfTasks.trim().match(/^[0-9]+[0-9]*$/) &&
     isValuesTouched.numberOfTasks;
-
-  const numberOfTasksErrorMessage =
-    modalInfo.tasks.length > +numberOfTasks &&
-    +numberOfTasks > 0 &&
-    `Column already have ${modalInfo.tasks.length} declared tasks, so you can't change maximum number of tasks to ${numberOfTasks}`;
 
   const haveValuesChanged =
     modalInfo.title === 'edit'
@@ -121,7 +116,6 @@ export const useManageColumnModal = ({
     isNameInvalid,
     isNumberOfTasksInvalid,
     haveValuesChanged,
-    numberOfTasksErrorMessage,
     color,
     name,
     numberOfTasks,

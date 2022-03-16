@@ -4,6 +4,7 @@ import { TaskType } from 'shared/types/Kanban';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ReportIcon from '@mui/icons-material/Report';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import { Tooltip } from '@mui/material';
 import classes from './Column.module.scss';
 
@@ -69,16 +70,22 @@ export const Column = ({
         <div className={classes['column__info']}>
           <div style={{ cursor: 'pointer' }}>{title}</div>
           <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
             className={
               tasks.length > numberOfTasks
                 ? classes['column__count--warning']
                 : ''
             }
           >
-            {tasks.length}/{numberOfTasks}
+            {tasks.length}/
+            {numberOfTasks || <AllInclusiveIcon fontSize="small" />}
           </div>
         </div>
-        {tasks.length > numberOfTasks && (
+        {tasks.length > numberOfTasks && Boolean(numberOfTasks) && (
           <Tooltip
             placement="bottom"
             title={`Maximum number of tasks allowed in ${title} column has been reached. Close, move or remove task to fix this error!`}
