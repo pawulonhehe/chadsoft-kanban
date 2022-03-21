@@ -6,6 +6,10 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    taskLimit: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
