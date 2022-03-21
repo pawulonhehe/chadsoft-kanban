@@ -35,7 +35,7 @@ export const columnRouter = (router) => {
 
   router.get('/columns', async (req, res) => {
     try {
-      const column = await Column.find().populate({ path: 'tasks', select: 'name description' });
+      const column = await Column.find().populate({ path: 'tasks', select: 'name description idUser' });
       res.status(200).json(column);
     } catch (err) {
       res.status(400).json({ success: false, message: err.message });
